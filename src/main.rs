@@ -1,4 +1,5 @@
 use clap::{Command, Arg};
+pub mod common;
 
 fn cli() -> Command {
 
@@ -91,17 +92,17 @@ fn cli() -> Command {
 fn main() {
     let matches: clap::ArgMatches = cli().get_matches();
 
-    println!("CAF -----------------------------------------");
+    print_banner_yellow!("--------------------------------------------------------");
+    print_banner_yellow!("CAF - Cloud Adoption Framework - deixei - Marcio Parente");
+    print_banner_yellow!("--------------------------------------------------------");
 
     match matches.subcommand() {
         Some(("init", sub_matches)) => {
             let name = sub_matches.get_one::<String>("name").expect("required");
             let template = sub_matches.get_one::<String>("template").expect("required");
-            println!(
-                "Initializing with name: {}, template: {}",
-                name,
-                template
-            );
+
+            print_info!("Initializing with name: {}, template: {}", name, template);
+
 
         }
         Some(("run", sub_matches)) => {
@@ -110,17 +111,12 @@ fn main() {
             let workspace_path = sub_matches.get_one::<String>("path").expect("required");
             let verbose = sub_matches.get_one::<String>("verbose").expect("required");
             let arguments = sub_matches.get_one::<String>("arguments").expect("required");
-            
-            println!(
-                "Running playbook: {}, verbose: {}, arguments: {}",
-                playbook_name,
-                verbose,
-                arguments
-            );
+
+            print_info!("Running playbook: {}, verbose: {}, arguments: {}, workspace: {}", playbook_name, verbose, arguments, workspace_path);
 
         }
         Some(("build", sub_matches)) => {
-            println!(
+            print_info!(
                 "Building with debug: {}, change_id: {}",
                 sub_matches.get_one::<String>("debug").expect("required"),
                 sub_matches.get_one::<String>("change_id").expect("required")
@@ -128,18 +124,18 @@ fn main() {
         }
         Some(("test", sub_matches)) => {
             let scope = sub_matches.get_one::<String>("scope").expect("required");
-            println!("Testing with scope: {}", scope);
+            print_info!("Testing with scope: {}", scope);
             
         }
         Some(("publish", sub_matches)) => {
-            println!(
+            print_info!(
                 "Publishing with ado_pack: {}, package: {}",
                 sub_matches.get_one::<String>("ado_pack").expect("required"),
                 sub_matches.get_one::<String>("package").expect("required")
             );
         }
         Some(("download", sub_matches)) => {
-            println!(
+            print_info!(
                 "Downloading with name: {}, version: {}",
                 sub_matches.get_one::<String>("name").expect("required"),
                 sub_matches.get_one::<String>("version").expect("required")
@@ -151,7 +147,7 @@ fn main() {
                 .into_iter()
                 .flatten()
                 .collect::<Vec<_>>();
-            println!("Calling out to {ext:?} with {args:?}");
+                print_info!("Calling out to {ext:?} with {args:?}");
         }
         _ => unreachable!(), // If all subcommands are defined above, anything else is unreachable!
     }

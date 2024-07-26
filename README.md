@@ -22,6 +22,7 @@ cargo new caf
 ### dependencies
 
 cargo add clap
+cargo add colored
 cargo add serde_yaml
 
 ### run locally

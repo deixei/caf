@@ -13,3 +13,4 @@ homepage = "https://github.dev/deixei/caf"
 
 [dependencies]
 clap = "4.5.11"
+colored = "2.1.0"
