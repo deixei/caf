@@ -11,4 +11,7 @@ Transforming large amounts of data into useful information
 
 be a tool to work with ADO test
 
+Serve as a coding sample for other features, like send emails or get emails
+
+full integration with app insights
 
