@@ -1,11 +1,14 @@
 use clap::{Command, Arg};
 pub mod common;
 
+// define constant with version number
+const VERSION: &str = "1.0";
+
 fn cli() -> Command {
 
     Command::new("caf")
         .about("caf - cloud adoption framework")
-        .version("1.0")
+        .version(VERSION)
         .author("deixei <deixei@deixei.com>")
         .subcommand(
             Command::new("init")
